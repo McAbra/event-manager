@@ -3,8 +3,7 @@ package org.piotr.eventmanager.Entity;
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,9 @@ public class User {
     private String name;
 
     @Getter
+    @ManyToMany
     private List<Event> events = new ArrayList<>();
+
     public User() {
     }
 
