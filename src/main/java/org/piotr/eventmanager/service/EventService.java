@@ -1,5 +1,6 @@
 package org.piotr.eventmanager.service;
 
+import org.piotr.eventmanager.dto.EventDTO;
 import org.piotr.eventmanager.entity.Event;
 import org.piotr.eventmanager.entity.utils.EventAccessType;
 import org.piotr.eventmanager.repository.EventRepository;
@@ -11,6 +12,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.piotr.eventmanager.mapper.EventMapper.mapEventListToDtoList;
+import static org.piotr.eventmanager.mapper.EventMapper.mapEventToDto;
 
 @Service
 public class EventService {
@@ -27,15 +31,8 @@ public class EventService {
         eventRepository.save(event);
     }
 
-    public List<Event> getAllEvents() {
-        List<Event> events = new ArrayList<>();
-        for (Object e : eventRepository.findAll()
-        ) {
-            if (e instanceof Event) {
-                events.add((Event) e);
-            }
-        }
-        return eventList;
+    public List<EventDTO> getAllEvents() {
+        return mapEventListToDtoList(eventRepository.findAll());
     }
 
     private LocalDateTime formatDate(String stringDate) {
