@@ -11,16 +11,27 @@ import java.util.List;
 import java.util.Set;
 
 
-@Entity(name = "user_")
+@Entity(name = "user")
 @Data
 @ToString
 public class User {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String login;
+    private String password;
+    private String userName;
+    private String email;
 
-    private String name;
+
+    public User(String login, String password, String userName) {
+        this.login = login;
+        this.password = password;
+        this.userName = userName;
+        this.userName = email;
+    }
 
     @Getter
     @ManyToMany
@@ -33,7 +44,7 @@ public class User {
     }
 
     public User (String name) {
-        this.name = name;
+        this.userName = userName;
     }
 
 }
