@@ -21,6 +21,9 @@ public class Event {
 
     private LocalDateTime eventDate;
 
+    @Embedded
+    private Address eventAddress;
+
     @Enumerated(EnumType.STRING)
     private EventAccessType accessType;
 

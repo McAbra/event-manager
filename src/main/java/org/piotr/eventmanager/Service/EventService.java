@@ -14,6 +14,6 @@ public interface EventService {
 
     List<EventDTO> getEventsByDate(LocalDateTime date);
 
-    List<EventDTO> getEventsOfType(String accessType);
+    List<EventDTO> getEventsOfTypePublic();
 
 }

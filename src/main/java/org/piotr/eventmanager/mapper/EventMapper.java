@@ -2,6 +2,7 @@ package org.piotr.eventmanager.mapper;
 
 import org.piotr.eventmanager.dto.EventDTO;
 import org.piotr.eventmanager.entity.Event;
+import org.piotr.eventmanager.entity.utils.EventAccessType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class EventMapper {
         eventDTO.setAccessType(event.getAccessType());
         eventDTO.setEventOwner(event.getEventOwner());
         eventDTO.setEventDate(event.getEventDate());
+        eventDTO.setEventAddress(event.getEventAddress());
         eventDTO.setName(event.getName());
         eventDTO.setParticipants(null); //fixme
         return eventDTO;
@@ -20,8 +22,8 @@ public class EventMapper {
 
     public static List<EventDTO> mapEventListToDtoList(Iterable<Event> events) {
         List<EventDTO> dtos = new ArrayList<>();
-        for (Event e : events) {
-            dtos.add(mapEventToDto(e));
+        for (Object e : events) {
+            dtos.add(mapEventToDto((Event)e));
         }
         return dtos;
     }
@@ -32,6 +34,9 @@ public class EventMapper {
         event.setEventDate(eventDTO.getEventDate());
         event.setEventOwner(eventDTO.getEventOwner());
         event.setName(eventDTO.getName());
+        event.setEventAddress(eventDTO.getEventAddress());
+        event.setEventAddress(eventDTO.getEventAddress());
+
         return event;
     }
 }
