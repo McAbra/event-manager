@@ -7,8 +7,6 @@ import org.piotr.eventmanager.Entity.Utils.EventAccessType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -21,14 +19,23 @@ public class Event {
 
     private String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime eventDate;
 
-    @Enumerated
-    private EventAccessType accesType;
+    @Enumerated(EnumType.STRING)
+    private EventAccessType accessType;
+
+    @ManyToOne
+    @JoinColumn(name = "ownerId")
+    private User eventOwner;
 
 
 //    @ManyToMany (mappedBy = "events")
 //    private List<User> participatns;
+
+    public Event(String name, LocalDateTime eventDate, EventAccessType accessType) {
+        this.name = name;
+        this.eventDate = eventDate;
+        this.accessType = accessType;
+    }
 
 }
