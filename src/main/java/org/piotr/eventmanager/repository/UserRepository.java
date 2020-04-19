@@ -1,6 +1,6 @@
-package org.piotr.eventmanager.Repository;
+package org.piotr.eventmanager.repository;
 
-import org.piotr.eventmanager.Entity.User;
+import org.piotr.eventmanager.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {

@@ -1,4 +1,4 @@
-package org.piotr.eventmanager.Entity;
+package org.piotr.eventmanager.entity;
 
 import lombok.Data;
 import lombok.Getter;

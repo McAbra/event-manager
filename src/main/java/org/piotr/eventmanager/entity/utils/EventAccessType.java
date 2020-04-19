@@ -1,4 +1,4 @@
-package org.piotr.eventmanager.Entity.Utils;
+package org.piotr.eventmanager.entity.utils;
 
 public enum EventAccessType {
     PUBLIC, PRIVATE

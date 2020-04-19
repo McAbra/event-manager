@@ -1,9 +1,9 @@
-package org.piotr.eventmanager.Entity;
+package org.piotr.eventmanager.entity;
 
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.piotr.eventmanager.Entity.Utils.EventAccessType;
+import org.piotr.eventmanager.entity.utils.EventAccessType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,7 +30,7 @@ public class Event {
 
 
 //    @ManyToMany (mappedBy = "events")
-//    private List<User> participatns;
+//    private List<User> participants;
 
     public Event(String name, LocalDateTime eventDate, EventAccessType accessType) {
         this.name = name;

@@ -1,8 +1,8 @@
-package org.piotr.eventmanager.Controller;
+package org.piotr.eventmanager.controller;
 
 
-import org.piotr.eventmanager.Entity.Event;
-import org.piotr.eventmanager.Service.EventService;
+import org.piotr.eventmanager.entity.Event;
+import org.piotr.eventmanager.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

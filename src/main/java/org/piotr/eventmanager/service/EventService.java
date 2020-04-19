@@ -1,8 +1,8 @@
-package org.piotr.eventmanager.Service;
+package org.piotr.eventmanager.service;
 
-import org.piotr.eventmanager.Entity.Event;
-import org.piotr.eventmanager.Entity.Utils.EventAccessType;
-import org.piotr.eventmanager.Repository.EventRepository;
+import org.piotr.eventmanager.entity.Event;
+import org.piotr.eventmanager.entity.utils.EventAccessType;
+import org.piotr.eventmanager.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
