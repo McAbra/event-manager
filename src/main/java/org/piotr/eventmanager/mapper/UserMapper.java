@@ -1,6 +1,5 @@
 package org.piotr.eventmanager.mapper;
 
-import org.piotr.eventmanager.dto.EventDTO;
 import org.piotr.eventmanager.dto.UserDTO;
 import org.piotr.eventmanager.entity.User;
 

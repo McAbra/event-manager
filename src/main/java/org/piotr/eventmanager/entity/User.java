@@ -25,8 +25,11 @@ public class User {
     private String userName;
     private String email;
 
+    @ManyToMany(mappedBy = "waitingList")
+    private List<Event> userWaitingList = new ArrayList<>();
 
     public User(String login, String password, String userName, String email) {
+
         this.login = login;
         this.password = password;
         this.userName = userName;
@@ -34,7 +37,7 @@ public class User {
     }
 
     @Getter
-    @ManyToMany
+    @ManyToMany(mappedBy = "acceptedUsers")
     private List<Event> events = new ArrayList<>();
 
     @OneToMany(mappedBy = "eventOwner")

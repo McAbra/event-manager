@@ -1,7 +1,7 @@
 package org.piotr.eventmanager.repository;
 
 import org.piotr.eventmanager.entity.Event;
-import org.piotr.eventmanager.entity.utils.EventAccessType;
+import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;

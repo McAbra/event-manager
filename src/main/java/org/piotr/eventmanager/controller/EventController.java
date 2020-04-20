@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.piotr.eventmanager.mapper.EventMapper.mapEventDtoToEvent;
-
 @RestController
 public class EventController {
     @Autowired
@@ -29,5 +27,10 @@ public class EventController {
     @GetMapping("/events/{accessType}")
     public List<EventDTO> getEventsOfType(@PathVariable String accessType) {
         return eventServiceImpl.getEventsOfType(accessType);
+    }
+
+    @GetMapping("/event/{eventId}")
+    public EventDTO getEvent(@PathVariable String eventId) {
+        return eventServiceImpl.getEventById(eventId);
     }
 }

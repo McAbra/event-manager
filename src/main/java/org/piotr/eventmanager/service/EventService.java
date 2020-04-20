@@ -1,7 +1,6 @@
 package org.piotr.eventmanager.service;
 
 import org.piotr.eventmanager.dto.EventDTO;
-import org.piotr.eventmanager.entity.Event;
 
 import java.time.LocalDateTime;
 import java.util.List;
