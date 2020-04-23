@@ -2,6 +2,7 @@ package org.piotr.eventmanager.entity;
 
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.piotr.eventmanager.entity.eventUtils.Address;
 import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
@@ -60,5 +61,11 @@ public class Event {
         this.eventDate = eventDate;
         this.accessType = accessType;
     }
+
+    @Getter
+
+    @OneToMany(mappedBy = "comment_id")
+    private Set<Event> events = new HashSet<>();
+
 
 }
