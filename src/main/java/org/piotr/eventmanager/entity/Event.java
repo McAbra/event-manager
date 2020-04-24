@@ -62,10 +62,8 @@ public class Event {
         this.accessType = accessType;
     }
 
-    @Getter
-
-    @OneToMany(mappedBy = "comment_id")
-    private Set<Event> events = new HashSet<>();
+    @OneToMany(mappedBy = "commentedEvent")
+    private Set<Comment> comments = new HashSet<>();
 
 
 }

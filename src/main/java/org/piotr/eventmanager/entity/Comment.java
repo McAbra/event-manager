@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity (name = "comment")
+@Entity(name = "comment")
 @NoArgsConstructor
 @Data
 
@@ -17,7 +17,6 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private long id;
     private String event;
     private String user;
@@ -30,12 +29,7 @@ public class Comment {
     }
 
     @Getter
-
-    @ManyToMany
-
-    @JoinTable{name = "comment_event",
-        joinColumns = @JoinColumn(name = "comment_id"),
-        inverseJoinColumns = @JoinColumn(name = "event_id"))
-        private Set<Event> events = new HashSet<>();
-    }
+    @ManyToOne
+    private Event commentedEvent;
 }
+

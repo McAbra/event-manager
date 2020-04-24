@@ -3,6 +3,7 @@ package org.piotr.eventmanager.service;
 import org.piotr.eventmanager.dto.EventDTO;
 import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
 import org.piotr.eventmanager.repository.EventRepository;
+import org.piotr.eventmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,13 @@ public class EventServiceImpl implements EventService {
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public void addEvent(EventDTO eventDTO) {
+
+        userRepository.save(eventDTO.getEventOwner());
 
         eventRepository.save(mapEventDtoToEvent(eventDTO));
     }

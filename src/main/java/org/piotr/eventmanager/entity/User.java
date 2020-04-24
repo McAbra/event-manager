@@ -26,19 +26,19 @@ public class User {
     private String email;
 
     @ManyToMany(mappedBy = "waitingList")
-    private List<Event> userWaitingList = new ArrayList<>();
+    private Set<Event> userWaitingList = new HashSet<>();
 
     public User(String login, String password, String userName, String email) {
 
         this.login = login;
         this.password = password;
         this.userName = userName;
-        this.userName = email;
+        this.email = email;
     }
 
     @Getter
     @ManyToMany(mappedBy = "acceptedUsers")
-    private List<Event> events = new ArrayList<>();
+    private Set<Event> events = new HashSet<>();
 
     @OneToMany(mappedBy = "eventOwner")
     private Set<Event> ownedEvents = new HashSet<>();
@@ -47,7 +47,7 @@ public class User {
     }
 
     public User (String name) {
-        this.userName = userName;
+        this.userName = name;
     }
 
 }
