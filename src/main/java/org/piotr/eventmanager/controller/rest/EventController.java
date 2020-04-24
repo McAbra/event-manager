@@ -1,4 +1,4 @@
-package org.piotr.eventmanager.controller;
+package org.piotr.eventmanager.controller.rest;
 
 
 import org.piotr.eventmanager.dto.EventDTO;

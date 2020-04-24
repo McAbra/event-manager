@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Event Form</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/add/event}" th:object="${eventForm}">
+
+    <label> Nazwa wydarzenia: </label><input type="text" th:field="*{name}"><br>
+    </label> Data i godzina wydarzenia: </label><input type="datetime-local" th:field="*{eventDate}"><br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
