@@ -15,4 +15,6 @@ public class RegistrationController {
         model.addAttribute("user", userDto);
         return "registration";
     }
+
+    //@post mapping dodac na user registration czyli to co odsla formularz
 }

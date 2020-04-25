@@ -14,7 +14,7 @@ import java.util.List;
 import static org.piotr.eventmanager.mapper.EventMapper.*;
 
 @Service
-public class EventServiceImpl implements EventService {
+public class EventServiceImpl implements org.piotr.eventmanager.service.EventService {
 
 //    private List<Event> eventList = Arrays.asList(
 //            new Event("Event 1", formatDate("2018-12-30 19:30"), EventAccessType.PRIVATE)
