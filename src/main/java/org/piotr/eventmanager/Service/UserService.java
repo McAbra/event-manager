@@ -1,4 +1,4 @@
-package org.piotr.eventmanager.service;
+package org.piotr.eventmanager.Service;
 
 import org.piotr.eventmanager.form.UserRegisterForm;
 
