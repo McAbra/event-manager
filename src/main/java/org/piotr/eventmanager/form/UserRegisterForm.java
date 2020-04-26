@@ -48,5 +48,3 @@ public class UserRegisterForm {
     }
 
 }
-// user service to controlera regstration
-// strona lgoowanie i gdzie przechowywana info o zalogowanych
