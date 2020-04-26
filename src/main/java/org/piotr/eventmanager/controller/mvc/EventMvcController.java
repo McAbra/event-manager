@@ -2,24 +2,27 @@ package org.piotr.eventmanager.controller.mvc;
 
 
 import org.piotr.eventmanager.form.NewEventForm;
+import org.piotr.eventmanager.service.EventServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
+
+import static org.piotr.eventmanager.mapper.EventMapper.mapEventFormToDto;
 
 @Controller
 public class EventMvcController {
 
+    @Autowired
+    private EventServiceImpl eventServiceImpl;
+
     @GetMapping("/add/event")
     public ModelAndView newEventForm() {
         ModelAndView mnv = new ModelAndView("newEventForm");
-        mnv.addObject("name", "Janusz");
         mnv.addObject("eventForm", new NewEventForm());
         return mnv;
     }
@@ -30,6 +33,7 @@ public class EventMvcController {
         if (errors.hasErrors()){
             return errors.toString();
         }
+        eventServiceImpl.addEvent(mapEventFormToDto(eventForm));
         return "redirect:/success";
     }
 

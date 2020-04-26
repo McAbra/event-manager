@@ -2,9 +2,11 @@ package org.piotr.eventmanager.mapper;
 
 import org.piotr.eventmanager.dto.UserDTO;
 import org.piotr.eventmanager.entity.User;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class UserMapper {
 
@@ -25,7 +27,7 @@ public class UserMapper {
         return dtos2;
     }
 
-    public static User mapUserDtotoUser(UserDTO userDTO){
+    public static User mapUserDtoToUser(UserDTO userDTO){
         User user = new User();
         userDTO.setLogin(userDTO.getLogin());
         userDTO.setPassword(userDTO.getPassword());

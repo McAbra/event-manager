@@ -19,7 +19,7 @@ public class NewEventForm {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime eventDate;
     private EventAccessType accessType;
-    private Address eventAddress;
+    private Address eventAddress = new Address();
     private User eventOwner;
 
 }

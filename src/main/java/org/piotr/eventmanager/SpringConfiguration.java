@@ -2,9 +2,11 @@ package org.piotr.eventmanager;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
+@EnableWebSecurity
 public class SpringConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -12,6 +14,7 @@ public class SpringConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/")
                 .permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/h2-console/**")

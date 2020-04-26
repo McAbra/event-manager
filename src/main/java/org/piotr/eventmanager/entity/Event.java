@@ -2,16 +2,14 @@ package org.piotr.eventmanager.entity;
 
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
 import org.piotr.eventmanager.entity.eventUtils.Address;
 import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity(name = "event")
