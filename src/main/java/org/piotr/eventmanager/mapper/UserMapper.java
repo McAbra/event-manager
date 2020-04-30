@@ -16,6 +16,7 @@ public class UserMapper {
         userDTO.setPassword(user.getPassword());
         userDTO.setUserName(user.getUserName());
         userDTO.setEmail(user.getEmail());
+        userDTO.setUuid(user.getUuid());
         return userDTO;
     }
 
@@ -27,12 +28,12 @@ public class UserMapper {
         return dtos2;
     }
 
-    public static User mapUserDtoToUser(UserDTO userDTO){
+    public static User mapUserDtoToNewUser(UserDTO userDTO) {
         User user = new User();
-        userDTO.setLogin(userDTO.getLogin());
-        userDTO.setPassword(userDTO.getPassword());
-        userDTO.setUserName(userDTO.getUserName());
-        userDTO.setEmail(userDTO.getEmail());
+        user.setLogin(userDTO.getLogin());
+        user.setPassword(userDTO.getPassword());
+        user.setUserName(userDTO.getUserName());
+        user.setEmail(userDTO.getEmail());
         return user;
     }
 }

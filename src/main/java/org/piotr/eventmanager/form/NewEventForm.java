@@ -1,9 +1,9 @@
 package org.piotr.eventmanager.form;
 
 import lombok.Data;
-import org.piotr.eventmanager.entity.eventUtils.Address;
+import org.piotr.eventmanager.entity.eventModels.Address;
 import org.piotr.eventmanager.entity.User;
-import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
+import org.piotr.eventmanager.entity.eventModels.EventAccessType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -18,7 +18,9 @@ public class NewEventForm {
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime eventDate;
+    @NotNull
     private EventAccessType accessType;
+    @NotNull
     private Address eventAddress = new Address();
     private User eventOwner;
 

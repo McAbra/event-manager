@@ -29,4 +29,6 @@ public class UserDTO {
     @NotEmpty
     private String email;
 
+    private String uuid;
+
 }

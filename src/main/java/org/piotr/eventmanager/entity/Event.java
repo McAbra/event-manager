@@ -3,14 +3,14 @@ package org.piotr.eventmanager.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
-import org.piotr.eventmanager.entity.eventUtils.Address;
-import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
+import org.piotr.eventmanager.entity.eventModels.EventAccessType;
+import org.piotr.eventmanager.entity.eventModels.Address;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity(name = "event")
 @NoArgsConstructor
@@ -62,6 +62,8 @@ public class Event {
 
     @OneToMany(mappedBy = "commentedEvent")
     private Set<Comment> comments = new HashSet<>();
+
+    private final String uuid = UUID.randomUUID().toString();
 
 
 }

@@ -1,4 +1,4 @@
-package org.piotr.eventmanager.entity.eventUtils;
+package org.piotr.eventmanager.entity.eventModels;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

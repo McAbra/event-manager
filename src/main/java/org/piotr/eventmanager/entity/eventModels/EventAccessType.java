@@ -1,4 +1,4 @@
-package org.piotr.eventmanager.entity.eventUtils;
+package org.piotr.eventmanager.entity.eventModels;
 
 
 public enum EventAccessType {

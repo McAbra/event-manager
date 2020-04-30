@@ -1,7 +1,7 @@
 package org.piotr.eventmanager.repository;
 
 import org.piotr.eventmanager.entity.Event;
-import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
+import org.piotr.eventmanager.entity.eventModels.EventAccessType;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;
@@ -15,6 +15,6 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 
     List<Event> findAllByAccessType(EventAccessType eventAccessType);
 
-
+    Event findByUuid(String uuid);
 
 }

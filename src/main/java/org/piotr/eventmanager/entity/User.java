@@ -3,12 +3,10 @@ package org.piotr.eventmanager.entity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
+import org.piotr.eventmanager.entity.userModels.Authority;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity(name = "user")
@@ -24,6 +22,10 @@ public class User {
     private String password;
     private String userName;
     private String email;
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
+    private boolean enabled;
+
 
     @ManyToMany(mappedBy = "waitingList")
     private Set<Event> userWaitingList = new HashSet<>();
@@ -36,17 +38,19 @@ public class User {
         this.email = email;
     }
 
-    @Getter
     @ManyToMany(mappedBy = "acceptedUsers")
     private Set<Event> events = new HashSet<>();
 
     @OneToMany(mappedBy = "eventOwner")
     private Set<Event> ownedEvents = new HashSet<>();
 
+    private final String uuid = UUID.randomUUID().toString();
+
+
     public User() {
     }
 
-    public User (String name) {
+    public User(String name) {
         this.userName = name;
     }
 

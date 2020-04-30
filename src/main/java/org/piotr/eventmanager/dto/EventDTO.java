@@ -2,12 +2,12 @@ package org.piotr.eventmanager.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.piotr.eventmanager.entity.eventUtils.Address;
+import org.piotr.eventmanager.entity.Comment;
+import org.piotr.eventmanager.entity.eventModels.Address;
 import org.piotr.eventmanager.entity.User;
-import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
+import org.piotr.eventmanager.entity.eventModels.EventAccessType;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 
@@ -15,14 +15,15 @@ import java.util.Set;
 @NoArgsConstructor
 public class EventDTO {
 
-    private Long id;
     private String name;
     private LocalDateTime eventDate;
     private EventAccessType accessType;
     private Address eventAddress;
-    private User eventOwner;
-    private Set<User> acceptedParticipants;
+    private UserDTO eventOwner;
+    private Set<UserDTO> acceptedUsers;
     private Set<User> waitingList;
+    private String uuid;
+    private Set<Comment> comments;
 
 
 }

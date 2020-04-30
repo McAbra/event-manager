@@ -1,7 +1,10 @@
 package org.piotr.eventmanager.service;
 
 import org.piotr.eventmanager.dto.EventDTO;
-import org.piotr.eventmanager.entity.eventUtils.EventAccessType;
+import org.piotr.eventmanager.dto.UserDTO;
+import org.piotr.eventmanager.entity.Event;
+import org.piotr.eventmanager.entity.User;
+import org.piotr.eventmanager.entity.eventModels.EventAccessType;
 import org.piotr.eventmanager.repository.EventRepository;
 import org.piotr.eventmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.piotr.eventmanager.mapper.EventMapper.*;
+import static org.piotr.eventmanager.mapper.UserMapper.mapUserDtoToNewUser;
 
 @Service
 public class EventServiceImpl implements org.piotr.eventmanager.service.EventService {
@@ -29,9 +33,9 @@ public class EventServiceImpl implements org.piotr.eventmanager.service.EventSer
     @Override
     public void addEvent(EventDTO eventDTO) {
 
-        userRepository.save(eventDTO.getEventOwner());
+        //userRepository.save(eventDTO.getEventOwner());
 
-        eventRepository.save(mapEventDtoToEvent(eventDTO));
+        eventRepository.save(mapEventDtoToNewEvent(eventDTO));
     }
 
     @Override
@@ -53,12 +57,34 @@ public class EventServiceImpl implements org.piotr.eventmanager.service.EventSer
         return mapEventToDto(eventRepository.findById(Long.valueOf(eventId)).get());
     }
 
+    @Override
+    public void updateEvent(EventDTO eventDTO) {
+        eventRepository.save(mapEventDtoToNewEvent(eventDTO));
+    }
+
+
+    @Override
+    public void addUserToWaitingList(UserDTO userDTO, EventDTO eventDTO) {
+        Event event = eventRepository.findById(eventDTO.getId()).get();
+        event.getWaitingList().add(mapUserDtoToNewUser(userDTO));
+        eventRepository.save(event);
+    }
+
+    @Override
+    public void acceptUser(UserDTO userDTO, EventDTO eventDTO) {
+        Event event = eventRepository.findByUuid(eventDTO.getUuid());
+        event.getWaitingList().remove(mapUserDtoToNewUser(userDTO));
+        event.getAcceptedUsers().add(mapUserDtoToNewUser(userDTO));
+        User user = userRepository.findByUuid(userDTO.getUuid());
+        user.getEvents().add(event);
+        userRepository.save(user);
+        eventRepository.save(event);
+    }
+
     private LocalDateTime formatDate(String stringDate) {
         DateTimeFormatter dTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return LocalDateTime.parse(stringDate, dTF);
     }
-
-
 
 
 }
