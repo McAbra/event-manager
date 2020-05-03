@@ -18,9 +18,9 @@ public interface EventService {
 
     void updateEvent(EventDTO eventDTO);
 
-    void addUserToWaitingList(UserDTO userDTO, EventDTO eventDTO);
-
-    void acceptUser(UserDTO userDTO, EventDTO eventDTO);
+//    void addUserToWaitingList(UserDTO userDTO, EventDTO eventDTO);
+//
+//    void acceptUser(UserDTO userDTO, EventDTO eventDTO);
 
 
 }

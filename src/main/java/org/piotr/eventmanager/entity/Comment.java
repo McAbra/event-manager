@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity(name = "comment")
 @NoArgsConstructor
@@ -18,17 +19,13 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String event;
-    private String user;
+    private final String uuid = UUID.randomUUID().toString();
+
+    @ManyToOne
+    private User author;
+
     private String text;
 
-    public Comment(String event, String user, String text) {
-        this.event = event;
-        this.user = user;
-        this.text = text;
-    }
-
-    @Getter
     @ManyToOne
     private Event commentedEvent;
 }

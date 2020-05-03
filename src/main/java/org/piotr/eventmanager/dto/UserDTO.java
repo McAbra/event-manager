@@ -1,34 +1,32 @@
 package org.piotr.eventmanager.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.piotr.eventmanager.entity.userModels.Authority;
+import org.piotr.eventmanager.info.EventInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode
 public class UserDTO {
-
-    private Long id;
-
-    @NotNull
-    @NotEmpty
-    private String login;
-
-    @NotNull
-    @NotEmpty
-    private String password;
-    private String matchingPassword;
-
-    @NotNull
-    @NotEmpty
-    private String userName;
-
-    @NotNull
-    @NotEmpty
-    private String email;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private String uuid;
+    private String login;
+    private String userName;
+    private String password;
+    private String email;
+    private Authority authority;
+    private Set<EventInfo> userWaitingList;
+    private Set<EventInfo> events;
+    private Set<EventInfo> ownedEvents;
+    private Set<CommentDTO> comments;
+
 
 }

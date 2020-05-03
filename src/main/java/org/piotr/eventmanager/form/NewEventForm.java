@@ -4,6 +4,7 @@ import lombok.Data;
 import org.piotr.eventmanager.entity.eventModels.Address;
 import org.piotr.eventmanager.entity.User;
 import org.piotr.eventmanager.entity.eventModels.EventAccessType;
+import org.piotr.eventmanager.info.UserInfo;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,6 @@ public class NewEventForm {
     private EventAccessType accessType;
     @NotNull
     private Address eventAddress = new Address();
-    private User eventOwner;
+    private UserInfo eventOwner;
 
 }
