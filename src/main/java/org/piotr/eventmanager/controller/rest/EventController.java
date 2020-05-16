@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/rest/event")
@@ -32,22 +33,18 @@ public class EventController {
 
 
     @GetMapping("/all")
-    public List<EventDTO> getAllEvents() {
+    public Set<EventDTO> getAllEvents() {
         return eventServiceImpl.getAllEvents();
     }
 
     @PostMapping("/newevent")
     public void addEvent(@RequestBody EventDTO eventDTO, Principal principal) {
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        System.out.println(name);
-        if (principal != null) {
-            eventDTO.setEventOwner(userMapper.mapUserToInfo(userRepository.findByUserName(principal.getName())));
-        }
+
         eventServiceImpl.addEvent(eventDTO);
     }
 
     @GetMapping("/{accessType}")
-    public List<EventDTO> getEventsOfType(@PathVariable String accessType) {
+    public Set<EventDTO> getEventsOfType(@PathVariable String accessType) {
         return eventServiceImpl.getEventsOfType(accessType);
     }
 

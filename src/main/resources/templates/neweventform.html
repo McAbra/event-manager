@@ -20,7 +20,7 @@
         <!--        </div>-->
 
         <!-- Login Form -->
-        <form method="post" th:action="@{/add/event}" th:object="${eventForm}">
+        <form method="post" th:action="@{/event/add}" th:object="${eventForm}">
             <input type="text" id="login" class="fadeIn second" th:field="*{name}" placeholder="Event name">
             <input type="datetime-local" class="fadeIn third" th:field="*{eventDate}" placeholder="Event date">
 

@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public interface EventRepository extends CrudRepository<Event, Long> {
 
@@ -16,5 +17,7 @@ public interface EventRepository extends CrudRepository<Event, Long> {
     List<Event> findAllByAccessType(EventAccessType eventAccessType);
 
     Event findByUuid(String uuid);
+
+    Set<Event> findByEventOwner(String ownerName);
 
 }

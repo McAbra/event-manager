@@ -8,16 +8,16 @@ import org.piotr.eventmanager.mapper.EventMapper;
 import org.piotr.eventmanager.repository.EventRepository;
 import org.piotr.eventmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-
+import java.util.Set;
 
 
 @Service
-public class EventServiceImpl implements org.piotr.eventmanager.service.EventService {
+public class EventServiceImpl implements EventService {
 
 //    private List<Event> eventList = Arrays.asList(
 //            new Event("Event 1", formatDate("2018-12-30 19:30"), EventAccessType.PRIVATE)
@@ -30,30 +30,32 @@ public class EventServiceImpl implements org.piotr.eventmanager.service.EventSer
     private UserRepository userRepository;
     @Autowired
     private EventMapper eventMapper;
+    @Autowired
+    private SecurityService securityService;
 
     @Override
-    public void addEvent(EventDTO eventDTO) {
-
-        //userRepository.save(eventDTO.getEventOwner());
-
-        eventRepository.save(eventMapper.mapDtoToEvent(eventDTO));
+    public String addEvent(EventDTO eventDTO) {
+        eventDTO.setEventOwner(userRepository.findByLogin(securityService.getLoginOfCurrentUser()).getUsername());
+        Event event = eventMapper.mapDtoToEvent(eventDTO);
+        eventRepository.save(event);
+        return event.getUuid();
     }
 
     @Override
-    public List<EventDTO> getAllEvents() {
+    public Set<EventDTO> getAllEvents() {
 
         return eventMapper.mapEventsToDtos(eventRepository.findAll());
     }
 
     @Override
-    public List<EventDTO> getEventsByDate(LocalDateTime date) {
+    public Set<EventDTO> getEventsByDate(LocalDateTime date) {
         return null;
         //return mapEventListToDtoList(eventRepository.findByEventDate(date));
     }
 
     @Override
-    public List<EventDTO> getEventsOfType(String eventType) {
-       return null;
+    public Set<EventDTO> getEventsOfType(String eventType) {
+        return null;
         //return mapEventListToDtoList(eventRepository.findAllByAccessType(EventAccessType.valueOf(eventType.toUpperCase())));
     }
 
@@ -78,9 +80,10 @@ public class EventServiceImpl implements org.piotr.eventmanager.service.EventSer
 
 
     @Override
-    public void addUserToWaitingList(UserDTO userDTO, EventDTO eventDTO) {
-        Event event = eventRepository.findByUuid(eventDTO.getUuid());
-        event.getWaitingList().add(userRepository.findByUuid(userDTO.getUuid()));
+    public void addUserToWaitingList(String eventUuid) {
+        System.out.println(eventUuid);
+        Event event = eventRepository.findByUuid(eventUuid);
+        event.getWaitingList().add(userRepository.findByLogin(securityService.getLoginOfCurrentUser()));
         eventRepository.save(event);
     }
 

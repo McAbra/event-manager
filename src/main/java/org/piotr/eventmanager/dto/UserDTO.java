@@ -18,13 +18,11 @@ public class UserDTO {
     private String uuid;
     private String login;
     private String userName;
-    private String password;
     private String email;
-    private Authority authority;
-    private Set<EventInfo> userWaitingList;
-    private Set<EventInfo> events;
-    private Set<EventInfo> ownedEvents;
-    private Set<CommentDTO> comments;
+    private Set<String> userWaitingList;
+    private Set<String> events;
+    private Set<String> ownedEvents;
+    private Set<String> comments;
 
 
 }

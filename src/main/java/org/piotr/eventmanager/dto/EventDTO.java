@@ -27,8 +27,8 @@ public class EventDTO {
     private LocalDateTime eventDate;
     private EventAccessType accessType;
     private Address eventAddress;
-    private UserInfo eventOwner;
-    private Set<UserInfo> waitingList;
-    private Set<UserInfo> acceptedUsers;
-    private Set<CommentInfo> comments;
+    private String eventOwner;
+    private Set<String> waitingList;
+    private Set<String> acceptedUsers;
+    private Set<String> commentsUuid;
 }

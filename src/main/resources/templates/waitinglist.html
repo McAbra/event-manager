@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event's Waiting List</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+
+<div>
+    <table style="width:80%">
+        <tr>
+            <th>User Name</th>
+        </tr>
+        <tr th:each="userName: ${waitingList}">
+            <td th:text="*{userName}">user name</td>
+
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

@@ -23,6 +23,6 @@ public class NewEventForm {
     private EventAccessType accessType;
     @NotNull
     private Address eventAddress = new Address();
-    private UserInfo eventOwner;
+    private String eventOwner;
 
 }

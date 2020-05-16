@@ -1,49 +1,73 @@
 package org.piotr.eventmanager.mapper;
 
-import org.modelmapper.ModelMapper;
 import org.piotr.eventmanager.dto.EventDTO;
+import org.piotr.eventmanager.entity.Comment;
 import org.piotr.eventmanager.entity.Event;
+import org.piotr.eventmanager.entity.User;
 import org.piotr.eventmanager.form.NewEventForm;
-import org.piotr.eventmanager.info.EventInfo;
+import org.piotr.eventmanager.service.CommentService;
+import org.piotr.eventmanager.service.EventService;
+import org.piotr.eventmanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class EventMapper {
 
     @Autowired
-    private ModelMapper modelMapper;
-
+    EventService eventService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    CommentService commentService;
 
     public EventDTO mapEventToDto(Event event) {
-        return modelMapper.map(event, EventDTO.class);
+        EventDTO eventDTO = new EventDTO();
+        eventDTO.setUuid(event.getUuid());
+        eventDTO.setName(event.getName());
+        eventDTO.setEventDate(event.getEventDate());
+        eventDTO.setAccessType(event.getAccessType());
+        eventDTO.setEventAddress(event.getEventAddress());
+        eventDTO.setEventOwner(event.getEventOwner().getUsername());
+        eventDTO.setWaitingList(event.getWaitingList().stream().map(User::getUsername).collect(Collectors.toSet()));
+        eventDTO.setAcceptedUsers(event.getAcceptedUsers().stream().map(User::getUsername).collect(Collectors.toSet()));
+        eventDTO.setCommentsUuid(event.getComments().stream().map(Comment::getUuid).collect(Collectors.toSet()));
+        return eventDTO;
+
+    }
+
+    public EventDTO mapEventFormToDto(NewEventForm eventForm) {
+        EventDTO eventDTO = new EventDTO();
+        eventDTO.setName(eventForm.getName());
+        eventDTO.setEventDate(eventForm.getEventDate());
+        eventDTO.setAccessType(eventForm.getAccessType());
+        eventDTO.setEventAddress(eventForm.getEventAddress());
+        eventDTO.setEventOwner(eventForm.getEventOwner());
+        return eventDTO;
     }
 
     public Event mapDtoToEvent(EventDTO eventDTO) {
-        return modelMapper.map(eventDTO, Event.class);
+        Event event = new Event();
+        event.setName(eventDTO.getName());
+        event.setEventDate(eventDTO.getEventDate());
+        event.setAccessType(eventDTO.getAccessType());
+        event.setEventAddress(eventDTO.getEventAddress());
+        event.setEventOwner(userService.getUserByName(eventDTO.getEventOwner()));
+        return event;
     }
 
-    public List<EventDTO> mapEventsToDtos(Iterable<Event> events) {
-        List<EventDTO> eventDTOS = new ArrayList<>();
-        for (Event e : events) {
-            eventDTOS.add(modelMapper.map(e, EventDTO.class));
+
+    public Set<EventDTO> mapEventsToDtos(Iterable<Event> events) {
+        Set<EventDTO> eventDTOS = new HashSet<>();
+        for (Event event : events
+        ) {
+            eventDTOS.add(mapEventToDto(event));
         }
         return eventDTOS;
-    }
-
-    public EventInfo mapEventToInfo(Event event) {
-        return modelMapper.map(event, EventInfo.class);
-    }
-
-
-    public Event mapEventFormToEvent(NewEventForm newEventForm) {
-        return modelMapper.map(newEventForm, Event.class);
-    }
-    public EventDTO mapEventFormToDto(NewEventForm newEventForm){
-        return modelMapper.map(newEventForm, EventDTO.class);
     }
 
 
