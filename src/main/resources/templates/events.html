@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:hh="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+
+<div>
+    <table style="width:80%">
+        <tr>
+            <th>Event Name</th>
+            <th>Miasto</th>
+            <th>Ulica</th>
+            <th>Numer</th>
+            <th>Date</th>
+            <th>Availability</th>
+        </tr>
+        <tr th:each="event: ${events}">
+            <td th:text="*{event.name}">event name</td>
+            <td th:text="*{event.eventAddress.city}">event address</td>
+            <td th:text="*{event.eventAddress.street}">event address</td>
+            <td th:text="*{event.eventAddress.number}">event address</td>
+            <td th:text="*{event.eventDate}">event date</td>
+            <td th:text="*{event.accessType}">event access type</td>
+        </tr>
+
+    </table>
+</div>
+
+</body>
+</html>

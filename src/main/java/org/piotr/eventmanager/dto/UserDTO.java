@@ -14,8 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class UserDTO {
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     private String uuid;
     private String login;

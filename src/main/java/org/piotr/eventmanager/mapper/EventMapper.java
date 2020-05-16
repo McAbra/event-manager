@@ -38,8 +38,12 @@ public class EventMapper {
         return modelMapper.map(event, EventInfo.class);
     }
 
+
     public Event mapEventFormToEvent(NewEventForm newEventForm) {
         return modelMapper.map(newEventForm, Event.class);
+    }
+    public EventDTO mapEventFormToDto(NewEventForm newEventForm){
+        return modelMapper.map(newEventForm, EventDTO.class);
     }
 
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <link rel="stylesheet" href="../css/styles.css">
+    <title> New Event </title>
+
+</head>
+<body>
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active"> Add new event</h2>
+        <!--        <h2 class="inactive underlineHover">Sign Up </h2>-->
+
+        <!-- Icon -->
+        <!--        <div class="fadeIn first">-->
+        <!--            <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon"/>-->
+        <!--        </div>-->
+
+        <!-- Login Form -->
+        <form method="post" th:action="@{/add/event}" th:object="${eventForm}">
+            <input type="text" id="login" class="fadeIn second" th:field="*{name}" placeholder="Event name">
+            <input type="datetime-local" class="fadeIn third" th:field="*{eventDate}" placeholder="Event date">
+
+            <select th:field="*{accessType}" placeholder="">
+                <option th:value="PUBLIC"> Public</option>
+                <option th:value="PRIVATE"> Private</option>
+            </select>
+
+            <input type="text" class="fadeIn third" th:field="*{eventAddress.city}" placeholder="City">
+            <input type="text" class="fadeIn third" th:field="*{eventAddress.street}" placeholder="Street">
+            <input type="text" class="fadeIn third" th:field="*{eventAddress.number}" placeholder="Number">
+            <input type="submit" class="fadeIn fourth" value="Add Event">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

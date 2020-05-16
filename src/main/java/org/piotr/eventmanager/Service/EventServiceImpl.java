@@ -72,32 +72,31 @@ public class EventServiceImpl implements org.piotr.eventmanager.service.EventSer
 
     @Override
     public void updateEvent(EventDTO eventDTO) {
+
         eventRepository.save(eventMapper.mapDtoToEvent(eventDTO));
     }
 
 
-//    @Override
-//    public void addUserToWaitingList(UserDTO userDTO, EventDTO eventDTO) {
-//        Event event = eventRepository.findByUuid(eventDTO.getUuid());
-//        event.getWaitingList().add(mapUserDtoToNewUser(userDTO));
-//        eventRepository.save(event);
-//    }
-//
-//    @Override
-//    public void acceptUser(UserDTO userDTO, EventDTO eventDTO) {
-//        Event event = eventRepository.findByUuid(eventDTO.getUuid());
-//        event.getWaitingList().remove(mapUserDtoToNewUser(userDTO));
-//        event.getAcceptedUsers().add(mapUserDtoToNewUser(userDTO));
-//        User user = userRepository.findByUuid(userDTO.getUuid());
-//        user.getEvents().add(event);
-//        userRepository.save(user);
-//        eventRepository.save(event);
-//    }
-
-    private LocalDateTime formatDate(String stringDate) {
-        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return LocalDateTime.parse(stringDate, dTF);
+    @Override
+    public void addUserToWaitingList(UserDTO userDTO, EventDTO eventDTO) {
+        Event event = eventRepository.findByUuid(eventDTO.getUuid());
+        event.getWaitingList().add(userRepository.findByUuid(userDTO.getUuid()));
+        eventRepository.save(event);
     }
 
+    @Override
+    public void acceptUser(UserDTO userDTO, EventDTO eventDTO) {
+        Event event = eventRepository.findByUuid(eventDTO.getUuid());
+        User user = userRepository.findByUuid(userDTO.getUuid());
+        event.getWaitingList().remove(user);
+        event.getAcceptedUsers().add(user);
+        user.getEvents().add(event);
+        userRepository.save(user);
+        eventRepository.save(event);
+    }
 
+    @Override
+    public EventDTO findEventByUuid(String uuid) {
+        return eventMapper.mapEventToDto(eventRepository.findByUuid(uuid));
+    }
 }

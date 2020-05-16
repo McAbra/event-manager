@@ -8,6 +8,7 @@ import org.piotr.eventmanager.service.EventServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -23,22 +24,26 @@ public class EventMvcController {
     @Autowired
     private EventMapper eventMapper;
 
-    @GetMapping("/add/event")
+    @GetMapping("/event/add")
     public ModelAndView newEventForm() {
-        ModelAndView mnv = new ModelAndView("newEventForm");
+        ModelAndView mnv = new ModelAndView("neweventform");
         mnv.addObject("eventForm", new NewEventForm());
         return mnv;
     }
 
-//    @PostMapping("/add/event")
-//    public String addedEvent(@Valid NewEventForm eventForm, Errors errors, Principal principal) {
-//
-//        if (errors.hasErrors()){
-//            return errors.toString();
-//        }
-//        eventServiceImpl.addEvent(eventMapper.mapEventFormToDto(eventForm));
-//        return "redirect:/success";
-//    }
+    @PostMapping("/event/add")
+    public String addNewEvent(NewEventForm newEventForm) {
+        eventServiceImpl.addEvent(eventMapper.mapEventFormToDto(newEventForm));
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/event/all")
+    public ModelAndView getAllEvents() {
+        ModelAndView mnv = new ModelAndView("events");
+        mnv.addObject("events", eventServiceImpl.getAllEvents());
+        return mnv;
+    }
 
 
 

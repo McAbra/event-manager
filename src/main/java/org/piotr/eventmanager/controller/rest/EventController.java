@@ -19,7 +19,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/event")
+@RequestMapping("/rest/event")
 public class EventController {
 
     @Autowired
@@ -60,5 +60,10 @@ public class EventController {
     @GetMapping("/addusertoevent/{eventUuid}/{userUuid}")
     public void addUserToEvent(@PathVariable String eventUuid, @PathVariable String userUuid) {
         eventServiceImpl.addUserToEvent(eventUuid, userUuid);
+    }
+
+    @GetMapping("/uuid/{uuid}")
+    public EventDTO findEventByUuid(@PathVariable String uuid) {
+        return eventServiceImpl.findEventByUuid(uuid);
     }
 }
